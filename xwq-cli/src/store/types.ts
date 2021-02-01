@@ -4,7 +4,6 @@ interface UserInfo {
   token: string;
 }
 
-
 export interface State {
   userInfo: UserInfo;
 }

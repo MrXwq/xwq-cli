@@ -5,7 +5,12 @@
  * @LineEnd: ----------------------------------------------
  */
 // 引入axios用来封装http请求
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosError, AxiosInstance } from "axios";
+import axios, {
+  AxiosRequestConfig,
+  AxiosResponse,
+  AxiosError,
+  AxiosInstance
+} from "axios";
 // token失效|禁用跳转登录页
 import router from "@/router/index";
 // 引入element-ui右侧弹框提示样式，可以根据项目需求改不同形式弹框
@@ -17,7 +22,7 @@ import {
   HTTP_STATUS_MSG_5XX,
   HTTP_STATUS_TITLE_ERROR,
   HTTP_STATUS_TITLE_5XX
-} from "../constants/TEXT";
+} from "@/constants/text";
 // 停止加载动画
 import { PATH_401 } from "@/constants/url";
 
@@ -29,7 +34,7 @@ const axiosCreate = {
   timeout: 30000,
   // 是否允许后端设置cookie跨域，一般无需改动
   withCredentials: false,
-  validateStatus: function (status: number) {
+  validateStatus: function(status: number) {
     // 若状态码大于等于500时则Reject 用来统一处理5XX报错走catch方法
     return status < 400;
   }
@@ -47,8 +52,6 @@ const postHeaders = "application/json";
 // 创建axios实例
 const httpInstance = axios.create(axiosCreate) as AxiosInstance;
 httpInstance.defaults.headers.common["Content-Type"] = postHeaders;
-
-
 
 /**
  * axios request拦截器
@@ -88,7 +91,6 @@ httpInstance.interceptors.request.use(
   }
 );
 
-
 /**
  * 
 // config: {url: "/api/enum", method: "get", params: {…}, headers: {…}, baseURL: "//kpi-api.chengjiukehu.com", …}
@@ -111,7 +113,7 @@ httpInstance.interceptors.response.use(
         title: HTTP_STATUS_TITLE_ERROR,
         message: "网络超时",
         duration: 3000
-      })
+      });
       return;
     }
     // 操作无权限
@@ -119,9 +121,9 @@ httpInstance.interceptors.response.use(
       Notification({
         type: "error",
         title: HTTP_STATUS_TITLE_ERROR,
-        message: '操作无权限',
+        message: "操作无权限",
         duration: 3000
-      })
+      });
     }
     // 用户登陆无权限
     else if (error.response?.status === 401) {
@@ -130,16 +132,16 @@ httpInstance.interceptors.response.use(
         title: HTTP_STATUS_TITLE_ERROR,
         message: HTTP_STATUS_MSG_401,
         duration: 3000
-      })
+      });
       router.push(PATH_401);
     } else {
       // 基于axiosCreate中validateStatus配置的区间判断此时状态码>=500 或者 浏览器直接报错(比如跨域) 走此弹框。
       Notification({
-        type: 'error',
+        type: "error",
         title: HTTP_STATUS_TITLE_5XX,
         message: HTTP_STATUS_MSG_5XX,
         duration: 3000
-      })
+      });
       return Promise.reject(error.response);
     }
   }

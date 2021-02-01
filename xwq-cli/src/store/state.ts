@@ -1,13 +1,13 @@
-import { State } from "./types"
+import { State } from "./types";
 export function initialState(): State {
   return {
     userInfo: {
-      name: '',
+      name: "",
       age: 0,
       token: ""
     }
   };
 }
-const state: State = initialState()
+const state: State = initialState();
 
 export default state;

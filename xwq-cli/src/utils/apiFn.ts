@@ -11,13 +11,11 @@ import httpInstance from "./httpInstance"; //导入http
  * @param { String } url
  * @param { Object } params
  */
-export function sendGet(url: string, params: object = {}) {
-  return new Promise(async (resolve, _) => {
-    const res = await httpInstance.get(url, { params });
-    if (res) {
-      resolve(res.data);
-    }
-  });
+export async function sendGet(url: string, params: object = {}) {
+  const res = await httpInstance.get(url, { params });
+  if (res) {
+    return res.data;
+  }
 }
 
 /**
@@ -25,13 +23,9 @@ export function sendGet(url: string, params: object = {}) {
  * @param { String } url
  * @param { Object } data
  */
-export function sendPost(url: string, data?: object) {
-  return new Promise(async (resolve, _) => {
-    const res = await httpInstance.post(url, data);
-    if (res) {
-      resolve(res.data);
-    }
-  });
+export async function sendPost(url: string, data?: object) {
+  const res = await httpInstance.post(url, data);
+  return res.data;
 }
 
 /**
@@ -39,14 +33,10 @@ export function sendPost(url: string, data?: object) {
  * @param { String } url
  * @param { Object } data
  */
-export function sendPut(url: string, data: object) {
-  return new Promise(async (resolve, _) => {
-    const res = await httpInstance.put(url, data);
+export async function sendPut(url: string, data: object) {
+  const res = await httpInstance.put(url, data);
 
-    if (res) {
-      resolve(res.data);
-    }
-  });
+  return res.data;
 }
 
 /**
@@ -54,13 +44,9 @@ export function sendPut(url: string, data: object) {
  * @param { String } url
  * @param { Object } params
  */
-export function sendDelete(url: string, params: object = {}) {
-  return new Promise(async (resolve, _) => {
-    const res = await httpInstance.delete(url, { params });
-    if (res) {
-      resolve(res.data);
-    }
-  });
+export async function sendDelete(url: string, params: object = {}) {
+  const res = await httpInstance.delete(url, { params });
+  return res.data;
 }
 
 /**
@@ -68,11 +54,12 @@ export function sendDelete(url: string, params: object = {}) {
  * @param iterable 是一个可以迭代的参数如数组等
  * @param callback 要等到所有请求都完成才会执行
  */
-export function sendAll(iterable: any[], callback: (value: any[]) => any) {
-  return new Promise(async (resolve, _) => {
-    const res: any[] = await axios.all(iterable).then(axios.spread(callback));
-    if (res.every(i => !!i)) {
-      resolve(res.map(r => r.data));
-    }
-  });
+export async function sendAll(
+  iterable: any[],
+  callback: (value: any[]) => any
+) {
+  const res: any[] = await axios.all(iterable).then(axios.spread(callback));
+  if (res.every(i => !!i)) {
+    return res.map(r => r.data);
+  }
 }
