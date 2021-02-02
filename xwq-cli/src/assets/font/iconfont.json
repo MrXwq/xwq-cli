@@ -1,0 +1,16 @@
+{
+  "id": "2280650",
+  "name": "blog",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "blog",
+  "glyphs": [
+    {
+      "icon_id": "6568050",
+      "name": "写博客",
+      "font_class": "xieboke",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    }
+  ]
+}
