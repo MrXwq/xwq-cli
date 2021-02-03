@@ -7,9 +7,9 @@
 <template>
   <div class="layout-box">
     <header>
-      <div>
-        <span>博客酱</span>
+      <div class="home-link">
         <i class="iconfont iconxieboke"></i>
+        <span class="home-link-text">BK Rebirth</span>
       </div>
       <el-menu
         :default-active="activeIndex"
@@ -33,7 +33,6 @@
       <user-info></user-info>
     </header>
     <section>
-      <aside>左侧</aside>
       <router-view class="body" />
       <aside>右侧</aside>
     </section>
@@ -63,14 +62,27 @@ export default {
   padding-top: 60px;
   header {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     position: fixed;
     top: 0;
+    right: 0;
+    padding: 0 20px;
     z-index: 20;
     width: 100%;
     box-sizing: border-box;
-    // box-shadow: 0 0 1px rgb(0 0 25%);
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease-in-out;
     background-color: #fff;
+    .home-link {
+      font-size: 30px;
+      .iconxieboke {
+        font-size: 30px;
+      }
+      .home-link-text {
+        font-family: pumpkinStory;
+      }
+    }
     .el-menu {
       width: 50%;
     }

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Main from "@/layout/index.vue";
+import { PATH_DEFAULT } from '@/constants/url'
 
 Vue.use(VueRouter);
 
@@ -9,10 +10,11 @@ const routes: Array<RouteConfig> = [
     path: "/",
     name: "Main",
     component: Main,
+    redirect: PATH_DEFAULT,
     children: [
       {
-        path: "main_body",
-        name: "MainBody",
+        path: "main",
+        name: "Main",
         component: () => import("@/components/modules/MainBody/index.vue")
       }
     ]
