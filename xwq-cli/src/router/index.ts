@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Main from "@/layout/index.vue";
-import { PATH_DEFAULT } from '@/constants/url'
+import { PATH_DEFAULT } from "@/constants/url";
 
 Vue.use(VueRouter);
 

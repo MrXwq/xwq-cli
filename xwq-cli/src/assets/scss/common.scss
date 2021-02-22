@@ -1,0 +1,8 @@
+.text-overflow {
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
