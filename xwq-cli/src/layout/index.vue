@@ -32,9 +32,11 @@
       </el-menu>
       <user-info></user-info>
     </header>
-    <section>
+    <section class="flex home-center">
       <router-view class="body" />
-      <aside>右侧</aside>
+      <aside>
+        <aside-info></aside-info>
+      </aside>
     </section>
     <footer>地步</footer>
   </div>
@@ -53,7 +55,8 @@ export default {
   },
   components: {
     "user-info": () =>
-      import("@/components/modules/MainHeader/UserInfo/index.vue") // 用户信息相关
+      import("@/components/modules/MainHeader/UserInfo/index.vue"), // 用户信息相关
+    "aside-info": () => import("@/components/modules/AsideInfo/index.vue") // 侧边栏用户
   }
 };
 </script>
@@ -73,7 +76,7 @@ export default {
     box-sizing: border-box;
     box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease-in-out;
-    background-color: #fff;
+    background-color: $background-color;
     .home-link {
       font-size: 30px;
       .iconxieboke {
@@ -87,8 +90,31 @@ export default {
       width: 50%;
     }
   }
+  .home-center {
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 1100px;
+    .body {
+      flex: auto;
+    }
+  }
 }
-.body {
-  position: static;
+
+aside {
+  position: sticky;
+  top: 70px;
+  flex: 0 0 300px;
+  height: 300px;
+}
+@media screen and (max-width: 600px) {
+  aside {
+    display: none;
+  }
+}
+footer {
+  padding: 1.5rem 2.5rem;
+  border-top: 1px solid $border-color;
+  text-align: center;
+  color: #5b5b5b;
 }
 </style>
