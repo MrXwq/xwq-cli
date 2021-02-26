@@ -47,6 +47,7 @@
         个人公司 版权所有
       </p>
     </footer>
+    <back-top />
   </div>
 </template>
 <script>
@@ -64,9 +65,9 @@ export default {
     }
   },
   components: {
-    "user-info": () =>
-      import("@/components/modules/MainHeader/UserInfo/index.vue"), // 用户信息相关
-    "aside-info": () => import("@/components/modules/AsideInfo/index.vue") // 侧边栏用户
+    "user-info": () => import("@modules/MainHeader/UserInfo/index.vue"), // 用户信息相关
+    "aside-info": () => import("@modules/AsideInfo/index.vue"), // 侧边栏用户
+    "back-top": () => import("@common/BackTop/index.vue") // 回到顶部
   }
 };
 </script>

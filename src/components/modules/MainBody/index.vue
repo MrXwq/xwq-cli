@@ -12,7 +12,7 @@
 <script>
 export default {
   components: {
-    cardlist: () => import("@/components/common/CardList/index.vue")
+    cardlist: () => import("@common/CardList/index.vue")
   }
 };
 </script>

@@ -15,7 +15,7 @@ const routes: Array<RouteConfig> = [
       {
         path: "main",
         name: "Main",
-        component: () => import("@/components/modules/MainBody/index.vue")
+        component: () => import("@modules/MainBody/index.vue")
       },
       {
         path: PATH_ARTICLE_DETAIL,
