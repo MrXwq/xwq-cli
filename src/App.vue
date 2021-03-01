@@ -16,6 +16,13 @@ html {
   color: #333;
   background-color: #f4f5f5;
 }
+body,
+html {
+  height: 100%;
+}
+.app {
+  height: 100%;
+}
 :root {
   --box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
   --box-shadow-hover: 0 2px 16px 0 rgba(0, 0, 0, 0.2);

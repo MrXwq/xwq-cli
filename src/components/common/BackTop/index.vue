@@ -5,13 +5,48 @@
  * @LineEnd: ----------------------------------------------
 -->
 <template>
-  <div @click="toTop" class="back-top-box">
-    <i class="el-icon-caret-top"></i>
-  </div>
+  <transition name="el-fade-in">
+    <div @click="toTop" v-show="toTopShow" class="back-top-box">
+      <i class="el-icon-caret-top"></i>
+    </div>
+  </transition>
 </template>
+
 <script>
 export default {
+  props: {
+    contentHeight: {
+      type: Number,
+      default: 0
+    }
+  },
+  data() {
+    return {
+      toTopShow: false // 是否展示回到顶部
+    };
+  },
+  mounted() {
+    this.$nextTick(function() {
+      window.addEventListener("scroll", this.handleScroll, true); // 取消事件冒泡，防止绑定失败
+    });
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.handleScroll, true); // 取消事件冒泡
+  },
   methods: {
+    handleScroll() {
+      /* 获取回到顶部的位置元素 .content-container-top */
+      const dom = document.getElementsByClassName("content-container-top")[0];
+      this.innerTop = dom && dom.scrollTop;
+      console.log(this.innerTop, this.contentHeight, [
+        document.getElementsByClassName("content-container-top")[0]
+      ]);
+      if (this.innerTop > this.contentHeight / 2) {
+        this.toTopShow = true;
+      } else {
+        this.toTopShow = false;
+      }
+    },
     toTop() {
       document.documentElement.scrollTop = 0;
     }

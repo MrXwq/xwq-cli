@@ -5,7 +5,7 @@
  * @LineEnd: ----------------------------------------------
 -->
 <template>
-  <div class="layout-box">
+  <div class="layout-box content-container-top" ref="main">
     <header>
       <div class="home-link">
         <i class="iconfont iconxieboke"></i>
@@ -47,7 +47,7 @@
         个人公司 版权所有
       </p>
     </footer>
-    <back-top />
+    <back-top :contentHeight="contentHeight" />
   </div>
 </template>
 <script>
@@ -56,8 +56,12 @@ export default {
   data() {
     return {
       activeIndex: "1",
-      PATH_MAIN
+      PATH_MAIN,
+      contentHeight: 0
     };
+  },
+  mounted() {
+    this.contentHeight = this.$refs.main.clientHeight;
   },
   methods: {
     handleSelect(key, keyPath) {
@@ -73,6 +77,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .layout-box {
+  height: 100vh;
+  overflow: auto;
   padding-top: 60px;
   header {
     display: flex;
